@@ -1,384 +1,387 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8"> <!-- Setzt den Zeichensatz auf UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive Design für mobile Geräte -->
-    <title>KE-Rechner</title> <!-- Titel der Webseite -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet"> <!-- Importiert die Schriftart Poppins -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KE-Rechner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         html, body {
-            height: 100%; /* Höhe auf 100% setzen */
-            width: 100%; /* Breite auf 100% setzen */
-            margin: 0; /* Kein Margin */
-            padding: 0; /* Kein Padding */
-            background-color: #212121; /* Dunkler Hintergrund */
-            color: #ffffff; /* Textfarbe auf #ADD8E6 */
-            font-family: 'Poppins', sans-serif; /* Setzt die Schriftart */
-            display: flex; /* Flexbox für Layout */
-            justify-content: center; /* Zentriert den Inhalt horizontal */
-            align-items: center; /* Zentriert den Inhalt vertikal */
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
         }
 
         .container {
-            width: 100vw; /* Verwende 95% der Bildschirmbreite */
-            max-width: 600px; /* Maximale Breite des Containers */
-            padding: 20px; /* Padding für Innenabstand */
-            box-sizing: border-box; /* Box-Sizing für bessere Berechnung der Breite/Höhe */
-            display: flex; /* Flexbox für Layout */
-            flex-direction: column; /* Anordnung der Elemente in einer Spalte */
-            align-items: center; /* Zentriert die Elemente im Container */
+            width: 100vw;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
         }
 
         h2 {
-            text-align: center; /* Zentriert die Überschrift */
-            margin: 20px 0; /* Abstand oben und unten */
-            font-weight: 900; /* Fette Schriftart */
-            font-size: 32px; /* Schriftgröße für die Überschrift */
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 900;
+            font-size: 32px;
         }
 
         input, select, button {
-            width: 100%; /* Breite auf 100% setzen */
-            height: 45px; /* Höhe der Eingabefelder */
-            margin: 10px 0; /* Abstand zwischen den Elementen */
-            padding: 0 10px; /* Seitliches Padding für Eingabefelder */
-            font-size: 20px; /* Schriftgröße für Eingabefelder */
-            border: none; /* Keine Rahmen */
-            outline: none; /* Keine Umrandung bei Fokus */
-            border-radius: 8px; /* Abgerundete Ecken */
-            background-color: rgba(58, 58, 58, 0.5); /* Durchsichtiger grauer Hintergrund */
-            color: #ffffff; /* Textfarbe auf #ADD8E6 */
-            box-sizing: border-box; /* Box-Sizing für bessere Berechnung */
-            font-weight: 600; /* Gewicht der Schriftart */
+            width: 100%;
+            height: 45px;
+            margin: 10px 0;
+            padding: 0 10px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            background-color: rgba(58, 58, 58, 0.5);
+            color: #ffffff;
+            box-sizing: border-box;
+            font-weight: 600;
         }
 
         button {
-            background-color: #5a8ea1; /* Bläuliche Hintergrundfarbe für Buttons */
-            color: #ffffff; /* Textfarbe für Buttons auf #ADD8E6 */
-            cursor: pointer; /* Cursor als Zeiger */
-            transition: background-color 0.3s ease; /* Sanfter Übergang der Hintergrundfarbe */
-            font-weight: 900; /* Fette Schriftart für Buttons */
-            font-size: 22px; /* Schriftgröße für Buttons */
+            background-color: #5a8ea1; 
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 900;
+            font-size: 22px;
         }
 
         button:hover {
-            background-color: #4c7d8f; /* Dunklere Farbe beim Hover-Effekt */
+            background-color: #4c7d8f;
         }
 
         #foodSuggestions {
-            max-height: 120px; /* Maximale Höhe für Vorschläge */
-            background-color: #333; /* Dunkler Hintergrund für Vorschläge */
-            width: 100%; /* Breite auf 100% setzen */
-            border-radius: 8px; /* Abgerundete Ecken */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatteneffekt */
-            z-index: 1000; /* Z-Index für die Schichtung */
-            display: none; /* Standardmäßig nicht sichtbar */
-            overflow: hidden; /* Versteckt überlaufenden Inhalt */
-            position: absolute; /* Absolute Positionierung */
-            padding: 0; /* Kein Padding */
+            max-height: 120px;
+            background-color: #333;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+            position: absolute;
+            padding: 0;
 			 font-weight: 600;
+			 top: 221px;
         }
 
         #foodSuggestions div {
-            padding: 10px; /* Padding für Vorschlags-Elemente */
-            cursor: pointer; /* Cursor als Zeiger */
-            transition: background-color 0.2s ease; /* Sanfter Übergang der Hintergrundfarbe */
-            font-size: 20px; /* Schriftgröße für Vorschläge */
-            color: #ffffff; /* Textfarbe für Vorschläge auf #ADD8E6 */
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 20px;
+            color: #ffffff;
 			font-weight: 800;
         }
 
         #foodSuggestions div:hover {
-            background-color: #444; /* Hintergrundfarbe beim Hover */
+            background-color: #444;
         }
 		        ul {
-            list-style-type: none; /* Keine Aufzählungszeichen */
-            padding: 0; /* Kein Padding */
-            margin-top: 10px; /* Abstand oben */
-            width: 100%; /* Breite auf 100% setzen */
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+            width: 100%;
         }
 
         ul li {
-            background: #2a2a2a; /* Dunkler Hintergrund für Listeneinträge */
-            padding: 10px; /* Padding für Listeneinträge */
-            margin: 5px 0; /* Abstand zwischen Listeneinträgen */
-            border-radius: 8px; /* Abgerundete Ecken */
-            color: #ffffff; /* Textfarbe für Listeneinträge auf #ADD8E6 */
-            display: flex; /* Flexbox für Listeneinträge */
-            justify-content: space-between; /* Platz zwischen Inhalt und Löschbutton */
-            align-items: center; /* Zentriert die Elemente vertikal */
-            box-sizing: border-box; /* Box-Sizing für bessere Berechnung */
-            font-size: 18px; /* Schriftgröße für Listeneinträge */
-            font-weight: 700; /* Gewicht der Schriftart */
-            flex-wrap: wrap; /* Erlaubt das Umwickeln von Text */
+            background: #2a2a2a;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            font-size: 18px;
+            font-weight: 700; 
+            flex-wrap: wrap; 
         }
 
         #totalKEBox, #totalWeightBox {
-            text-align: center; /* Zentriert den Text */
-            background-color: transparent; /* Kein Hintergrund */
-            color: #82c8e5; /* Textfarbe für Gesamt KE und Gewicht auf #ADD8E6 */
-            height: 50px; /* Höhe der Boxen */
-            line-height: 50px; /* Vertikale Zentrierung des Textes */
-            font-size: 24px; /* Schriftgröße für Gesamt KE und Gewicht */
-            font-weight: 900; /* Fette Schriftart */
-            margin-top: 30px; /* Abstand nach oben */
+            text-align: center;
+            background-color: transparent;
+            color: #82c8e5;
+            height: 50px;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: 900;
+            margin-top: 30px;
         }
 
         #portionLabel {
-            text-align: center; /* Zentriert den Text */
-            font-size: 18px; /* Schriftgröße für Portionsanzeige */
-            color: #ADD8E6; /* Textfarbe für Portionsanzeige auf #ADD8E6 */
-            margin-top: 5px; /* Abstand nach oben */
-            display: none; /* Standardmäßig nicht sichtbar */
-            font-weight: 900; /* Fette Schriftart */
+            text-align: center;
+            font-size: 18px;
+            color: #ADD8E6;
+            margin-top: 5px;
+            display: none;
+            font-weight: 900;
         }
 
         #newFoodSection {
-            display: none; /* Standardmäßig nicht sichtbar */
-            width: 100%; /* Volle Breite */
-            margin-top: 20px; /* Abstand nach oben */
-            background-color: transparent; /* Transparenter Hintergrund */
-            border: none; /* Keine Rahmen */
+            display: none;
+            width: 100%;
+            margin-top: 20px;
+            background-color: transparent;
+            border: none;
         }
 
 
 
         .delete-btn {
-            width: 20px; /* Breite für die Löschschaltfläche */
-            height: 20px; /* Höhe für die Löschschaltfläche */
-            border: none; /* Keine Rahmen */
-            cursor: pointer; /* Cursor als Zeiger */
-            display: flex; /* Flexbox für zentrierte Darstellung */
-            align-items: center; /* Vertikale Zentrierung */
-            justify-content: center; /* Horizontale Zentrierung */
-            border-radius: 5px; /* Abgerundete Ecken für quadratische Form */
-            transition: background-color 0.3s ease; /* Sanfter Übergang der Hintergrundfarbe */
-            font-size: 10px; /* Größe des Symbols */
+            width: 20px;
+            height: 20px;
+            border: none;
+            cursor: pointer; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 10px; 
         }
 
         .delete-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2); /* Leichte Hintergrundfarbe beim Hover */
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
         .delete-icon {
-            fill: #ffffff; /* Farbe des Symbols auf #ADD8E6 */
-            width: 10px; /* Größe für das Symbol */
-            height: 10px; /* Größe für das Symbol */
-            transition: transform 0.3s ease; /* Sanfter Übergang der Transformation */
-            color: #ffffff; /* Farbe des Symbols auf #ADD8E6 */
-            display: flex; /* Flexbox für zentrierte Darstellung */
-            justify-content: center; /* Zentrierung */
-            align-items: center; /* Vertikale Zentrierung */
+            fill: #ffffff;
+            width: 10px;
+            height: 10px;
+            transition: transform 0.3s ease;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #toggleNewFoodSection {
-            margin-top: 20px; /* Abstand nach oben */
-            text-align: center; /* Zentriert den Plus-Button */
-            color: #ffffff; /* Textfarbe für das Plus-Zeichen auf #ADD8E6 */
-            font-size: 36px; /* Größe des Plus-Buttons */
-            cursor: pointer; /* Cursor als Zeiger */
-            transition: transform 0.2s ease; /* Sanfter Übergang für die Animation */
+            margin-top: 20px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 36px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
         #toggleNewFoodSection:hover {
-            transform: scale(1.2); /* Vergrößert den Button beim Hover */
+            transform: scale(1.2);
         }
 
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Kohlenhydrate Rechener</h2> <!-- Überschrift für den Rechner -->
+    <h2>Kohlenhydrate Rechener</h2>
 
-    <!-- Eingabefeld für Lebensmittel -->
+
     <input type="text" id="foodSearch" placeholder="Lebensmittel suchen..." oninput="showSuggestions()" />
-    <div id="foodSuggestions"></div> <!-- Vorschlagsbox für Lebensmittel -->
+    <div id="foodSuggestions"></div>
 
-    <!-- Eingabefeld für die Menge des Lebensmittels -->
+
     <input type="number" id="foodAmount" placeholder="Menge in Gramm..." />
 
-    <!-- Button zum Hinzufügen des Lebensmittels -->
+
     <button onclick="addFood()">Berechen</button>
 	
-	<div id="portionLabel">Menge: <span id="portionSize">0</span> Lebensmittel</div> <!-- Anzeige der Anzahl der Lebensmittel -->
-    <div id="totalKEBox">Gesamt KE: 0 KE</div> <!-- Anzeige für die Gesamt-Kalorienäquivalente -->
-    <div id="totalWeightBox">Gesamtgewicht: 0 g</div> <!-- Anzeige für das Gesamtgewicht -->
-	<ul id="foodList"></ul> <!-- Liste der hinzugefügten Lebensmittel -->
+	<div id="portionLabel">Menge: <span id="portionSize">0</span> Lebensmittel</div>
+    <div id="totalKEBox">Gesamt KE: 0 KE</div>
+    <div id="totalWeightBox">Gesamtgewicht: 0 g</div>
+	<ul id="foodList"></ul>
 
     <div id="newFoodSection">
-        <h2>Neue Lebensmittel hinzufügen</h2> <!-- Überschrift für den Bereich zum Hinzufügen neuer Lebensmittel -->
+        <h2>Neues Lebensmittel hinzufügen</h2>
         
-        <!-- Eingabefeld für den Namen des neuen Lebensmittels -->
-        <input type="text" id="newFoodName" placeholder="Name des Lebensmittels" />
+
+        <input type="text" id="newFoodName" placeholder="Name des neuen Lebensmittels" />
         
-        <!-- Eingabefeld für den KE-Wert des neuen Lebensmittels -->
-        <input type="number" id="newFoodKE" placeholder="KE (Kalorienäquivalent)" />
+
+        <input type="number" id="newFoodKE" placeholder="Gramm Kohlenhydrate" />
         
-        <!-- Auswahlfeld für den Typ des neuen Lebensmittels -->
+
         <select id="newFoodType">
-            <option value="">Wählen Sie den Typ</option> <!-- Platzhalter -->
-            <option value="langsam">Langsam</option> <!-- Option für langsame Lebensmittel -->
-            <option value="schnell">Schnell</option> <!-- Option für schnelle Lebensmittel -->
+            <option value="">Wie schnell ist das neue Produkt?💨</option>
+            <option value="langsam">langsam</option>
+            <option value="schnell">schnell</option>
+			<option value="neutral">neutral</option>			
         </select>
 
-        <!-- Button zum Hinzufügen neuer Lebensmittel -->
+
         <button onclick="addNewFood()">Hinzufügen</button>
     </div>
 
     
 
-    <div id="toggleNewFoodSection" onclick="toggleNewFoodSection()">⁺</div> <!-- Umschalt-Button für den Bereich neue Lebensmittel -->
+    <div id="toggleNewFoodSection" onclick="toggleNewFoodSection()">⁺</div>
 </div>
 
 <script>
-    // Lebensmittel-Datenbank mit KE-Werten und Typen
+
     let foodData = {
         "Äpfel": { keFactor: 11, type: "langsam" },
         "Banane": { keFactor: 22, type: "schnell" },
         "Brot": { keFactor: 49, type: "langsam" },
         "Reis": { keFactor: 77, type: "schnell" },
         "Nudeln": { keFactor: 74, type: "schnell" },
-        "Kartoffeln": { keFactor: 17, type: "langsam" }
+        "Kartoffeln": { keFactor: 17, type: "neutral" }
     };
 
-    let foodList = []; // Array für die hinzugefügten Lebensmittel
-    let totalKE = 0; // Variable für die Gesamt-Kalorienäquivalente
-    let totalWeight = 0; // Variable für das Gesamtgewicht
+    let foodList = [];
+    let totalKE = 0;
+    let totalWeight = 0;
 
-    // Icons für die Typen von Lebensmitteln
+
     const icons = {
-        schnell: '⚡', // Icon für schnelle Lebensmittel
-        langsam: '🐌' // Icon für langsame Lebensmittel
+        schnell: '⚡',
+        langsam: '🐌',
+		neutral: '🥬'
     };
 
-    // Funktion zum Umschalten der Sichtbarkeit des neuen Lebensmittel-Bereichs
+
     function toggleNewFoodSection() {
         const newFoodSection = document.getElementById("newFoodSection");
-        // Sichtbarkeit umschalten
+
         newFoodSection.style.display = newFoodSection.style.display === "none" || newFoodSection.style.display === "" ? "block" : "none";
     }
 
-    // Funktion zum Laden der Lebensmittel-Daten
+
     function loadFoodData() {
-        const savedFoodData = JSON.parse(localStorage.getItem('foodData')); // Geladene Daten aus localStorage
+        const savedFoodData = JSON.parse(localStorage.getItem('foodData'));
         if (savedFoodData) {
-            foodData = savedFoodData; // Aktualisiere foodData mit gespeicherten Daten
+            foodData = savedFoodData;
         }
-        foodList = []; // Leere die Liste der Lebensmittel
-        updateFoodList(); // Aktualisiere die Anzeige der Lebensmittel
-        updateTotals(); // Aktualisiere die Gesamtsummen
+        foodList = []; 
+        updateFoodList();
+        updateTotals();
     }
 
-    loadFoodData(); // Lade die Lebensmittel-Daten beim Start
+    loadFoodData();
 
-    // Funktion zum Hinzufügen eines Lebensmittels
+
     function addFood() {
-        const foodName = document.getElementById("foodSearch").value.trim(); // Name des Lebensmittels
-        const foodAmount = parseFloat(document.getElementById("foodAmount").value); // Menge des Lebensmittels
+        const foodName = document.getElementById("foodSearch").value.trim();
+        const foodAmount = parseFloat(document.getElementById("foodAmount").value); 
 
-        // Überprüfe, ob das Lebensmittel gültig ist
+ 
         if (!foodData[foodName] || isNaN(foodAmount) || foodAmount <= 0) {
-            alert("Bitte gültige Lebensmittel und Menge eingeben."); // Fehlerhinweis
-            return; // Funktion beenden
+            alert("Du musst dich schon entschtscheiden was und wie viel du essen möchtest :).");
+            return;
         }
 
-        const keFactor = foodData[foodName].keFactor; // KE-Faktor des Lebensmittels
-        const foodType = foodData[foodName].type; // Typ des Lebensmittels
-        const amount = (keFactor * foodAmount) / 100; // Berechnung der Kalorienäquivalente
-        totalKE += amount; // Gesamt KE aktualisieren
-        totalWeight += foodAmount; // Gesamtgewicht aktualisieren
-        foodList.push({ name: foodName, amount, totalWeight: foodAmount, type: foodType }); // Lebensmittel zur Liste hinzufügen
+        const keFactor = foodData[foodName].keFactor;
+        const foodType = foodData[foodName].type;
+        const amount = (keFactor * foodAmount) / 100;
+        totalKE += amount;
+        totalWeight += foodAmount;
+        foodList.push({ name: foodName, amount, totalWeight: foodAmount, type: foodType });
 
-        updateFoodList(); // Aktualisiere die Anzeige der Lebensmittel
-        updateTotals(); // Aktualisiere die Gesamtsummen
-        saveData(); // Speichere die Daten
+        updateFoodList();
+        updateTotals();
+        saveData();
 
-        document.getElementById("foodSearch").value = ""; // Eingabefeld zurücksetzen
-        document.getElementById("foodAmount").value = ""; // Eingabefeld zurücksetzen
-        document.getElementById("foodSuggestions").innerHTML = ""; // Vorschläge zurücksetzen
+        document.getElementById("foodSearch").value = "";
+        document.getElementById("foodAmount").value = "";
+        document.getElementById("foodSuggestions").innerHTML = "";
     }
 
-    // Funktion zum Hinzufügen neuer Lebensmittel zur Datenbank
-    function addNewFood() {
-        const newFoodName = document.getElementById("newFoodName").value.trim(); // Name des neuen Lebensmittels
-        const newFoodKE = parseFloat(document.getElementById("newFoodKE").value); // KE-Wert des neuen Lebensmittels
-        const newFoodType = document.getElementById("newFoodType").value; // Typ des neuen Lebensmittels
 
-        // Überprüfe, ob alle Felder korrekt ausgefüllt sind
+    function addNewFood() {
+        const newFoodName = document.getElementById("newFoodName").value.trim();
+        const newFoodKE = parseFloat(document.getElementById("newFoodKE").value);
+        const newFoodType = document.getElementById("newFoodType").value;
+
+
         if (!newFoodName || isNaN(newFoodKE) || newFoodKE < 0 || !newFoodType) {
-            alert("Bitte alle Felder korrekt ausfüllen."); // Fehlerhinweis
-            return; // Funktion beenden
+            alert("Da fehlen anscheind noch Angaben.");
+            return;
         }
 
-        // Füge das neue Lebensmittel zur Datenbank hinzu
-        foodData[newFoodName] = { keFactor: newFoodKE, type: newFoodType };
-        saveData(); // Speichere die aktualisierte Lebensmittel-Datenbank
 
-        // Leere die Eingabefelder
+        foodData[newFoodName] = { keFactor: newFoodKE, type: newFoodType };
+        saveData();
+
+
         document.getElementById("newFoodName").value = "";
         document.getElementById("newFoodKE").value = "";
         document.getElementById("newFoodType").value = "";
 
-        alert(`Lebensmittel "${newFoodName}" hinzugefügt.`); // Bestätigung für das Hinzufügen
+        alert(`Lebensmittel "${newFoodName}" hinzugefügt.`);
     }
 
-    // Funktion zum Aktualisieren der Liste der Lebensmittel
+
     function updateFoodList() {
-        const foodListElement = document.getElementById("foodList"); // Element für die Lebensmittel-Liste
-        foodListElement.innerHTML = ""; // Leere die aktuelle Liste
+        const foodListElement = document.getElementById("foodList");
+        foodListElement.innerHTML = "";
 
         foodList.forEach((food, index) => {
-            const li = document.createElement("li"); // Erstelle ein neues Listenelement
-            const icon = icons[food.type] || ""; // Hole das Icon für den Typ des Lebensmittels
+            const li = document.createElement("li");
+            const icon = icons[food.type] || "";
             li.innerHTML = `
                 ${icon} ${food.totalWeight} g ${food.name}: ${food.amount.toFixed(2)} KE
                 <button class="delete-btn" onclick="removeFood(${index})">
                     <span class="delete-icon">✘</span>
                 </button>
-            `; // Setze den Inhalt des Listenelements
-            foodListElement.appendChild(li); // Füge das Listenelement zur Liste hinzu
+            `;
+            foodListElement.appendChild(li);
         });
     }
 
-    // Funktion zum Entfernen eines Lebensmittels aus der Liste
+
     function removeFood(index) {
-        totalKE -= foodList[index].amount; // Reduziere die Gesamt KE um den Betrag des entfernten Lebensmittels
-        totalWeight -= foodList[index].totalWeight; // Reduziere das Gesamtgewicht um das Gewicht des entfernten Lebensmittels
-        foodList.splice(index, 1); // Entferne das Lebensmittel aus der Liste
-        updateFoodList(); // Aktualisiere die Anzeige der Lebensmittel
-        updateTotals(); // Aktualisiere die Gesamtwerte
-        saveData(); // Speichere die aktualisierte Liste
+        totalKE -= foodList[index].amount;
+        totalWeight -= foodList[index].totalWeight; 
+        foodList.splice(index, 1);
+        updateFoodList();
+        updateTotals();
+        saveData();
     }
 
     // Funktion zum Aktualisieren der Gesamtsummen
     function updateTotals() {
-        document.getElementById("totalKEBox").innerText = `Gesamt KE: ${totalKE.toFixed(2)} KE`; // Aktualisiere die Gesamt KE-Anzeige
-        document.getElementById("totalWeightBox").innerText = `Gesamtgewicht: ${totalWeight} g`; // Aktualisiere die Gesamtgewicht-Anzeige
-        document.getElementById("portionSize").innerText = foodList.length; // Aktualisiere die Anzahl der Lebensmittel
+        document.getElementById("totalKEBox").innerText = `Gesamt KE: ${totalKE.toFixed(2)} KE`;
+        document.getElementById("totalWeightBox").innerText = `Gesamtgewicht: ${totalWeight} g`;
+        document.getElementById("portionSize").innerText = foodList.length;
     }
 
-    // Funktion zum Speichern der Daten im localStorage
+   
     function saveData() {
-        localStorage.setItem('foodData', JSON.stringify(foodData)); // Speichere die Lebensmittel-Daten im localStorage
+        localStorage.setItem('foodData', JSON.stringify(foodData));
     }
 
-    // Funktion zur Anzeige der Vorschläge für Lebensmittel
+
     function showSuggestions() {
         const input = document.getElementById("foodSearch").value; // Hole den eingegebenen Wert
-        const suggestions = Object.keys(foodData).filter(food => food.toLowerCase().includes(input.toLowerCase())); // Filtere die Vorschläge basierend auf der Eingabe
-        const suggestionsBox = document.getElementById("foodSuggestions"); // Hole das Element für die Vorschläge
+        const suggestions = Object.keys(foodData).filter(food => food.toLowerCase().includes(input.toLowerCase()));
+        const suggestionsBox = document.getElementById("foodSuggestions");
 
         if (suggestions.length > 0 && input) {
-            suggestionsBox.innerHTML = suggestions.map(s => `<div onclick="selectSuggestion('${s}')">${s}</div>`).join(''); // Zeige die Vorschläge an
-            suggestionsBox.style.display = "block"; // Mache die Vorschlagsbox sichtbar
+            suggestionsBox.innerHTML = suggestions.map(s => `<div onclick="selectSuggestion('${s}')">${s}</div>`).join(''); 
+            suggestionsBox.style.display = "block";
         } else {
-            suggestionsBox.style.display = "none"; // Verstecke die Vorschlagsbox, wenn keine Vorschläge vorhanden sind
+            suggestionsBox.style.display = "none";
         }
     }
 
-    // Funktion zum Auswählen eines Vorschlags
+
     function selectSuggestion(food) {
-        document.getElementById("foodSearch").value = food; // Setze das Eingabefeld auf den ausgewählten Vorschlag
-        document.getElementById("foodSuggestions").style.display = "none"; // Verstecke die Vorschlagsbox
+        document.getElementById("foodSearch").value = food;
+        document.getElementById("foodSuggestions").style.display = "none";
     }
 </script>
 </body>
