@@ -197,7 +197,7 @@
     
     <button onclick="addFood()">Berechnen</button>
     
-    <ul id="foodList"></ul> <!-- Liste der Lebensmittel jetzt über Gesamt KE und Gesamtgewicht -->
+    <ul id="foodList"></ul>
 
     <div id="totalKEBox">Gesamt KE: 0 KE</div>
     <div id="totalWeightBox">Gesamtgewicht: 0 g</div>
@@ -291,6 +291,12 @@
 	"Döner": { keFactor: 1.72, type: "langsam", info: "1 Döner ca.350g" },
 	"Maultaschen": { keFactor: 2, type: "neutral", info: "2 Maultschen ca 100g" },
 	"Pizza": { keFactor: 2.85, type: "langsam", info: "1 Pizza ca 350g bei 24cm" },
+    "Prinzenrolle": { keFactor: 6.5, type: "neural"},
+    "Gnocci": { keFactor: 2.1, type: "neutral" },
+    "Vollkornnudeln": { keFactor: 2.5, type: "neutral" },
+    "Ketchup": { keFactor: 2.5, type: "neutral" },
+    "Donuts mit Zuckerglasur": { keFactor: 4.8, type: "neutral" },
+    
 	
 	
 	
@@ -348,7 +354,7 @@
     const keFactor = foodData[foodName].keFactor;
     const foodType = foodData[foodName].type;
     const amount = (keFactor * foodAmount) / 100;
-    const info = foodData[foodName].info || " "; // Neue `info`-Eigenschaft
+    const info = foodData[foodName].info || " ";
 
     totalKE += amount;
     totalWeight += foodAmount;
@@ -412,7 +418,7 @@ function showSuggestions() {
 
     if (suggestions.length > 0 && input) {
         suggestionsBox.innerHTML = suggestions.map(food => {
-            const foodInfo = foodData[food].info ? ` &bull; <span style="font-size: 14px; color: rgba(255, 255, 255, 0.7);">${foodData[food].info}</span>` : ""; // Info, falls verfügbar
+            const foodInfo = foodData[food].info ? ` &bull; <span style="font-size: 14px; color: rgba(255, 255, 255, 0.7);">${foodData[food].info}</span>` : "";
             return `<div onclick="selectSuggestion('${food}')">${food}${foodInfo}</div>`;
         }).join('');
         suggestionsBox.style.display = "block";
