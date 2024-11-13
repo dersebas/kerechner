@@ -1,0 +1,188 @@
+/* Grundlegende Stile für die gesamte Seite */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #212121;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container für die App */
+.container {
+    width: 100vw;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Hauptüberschrift */
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 900;
+    font-size: 32px;
+}
+
+/* Eingabefelder, Auswahlfelder und Schaltflächen */
+input, select, button {
+    width: 100%;
+    height: 45px;
+    margin: 10px 0;
+    padding: 0 10px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: rgba(58, 58, 58, 0.5);
+    color: #ffffff;
+    box-sizing: border-box;
+    font-weight: 600;
+}
+
+/* Schaltflächenstil */
+button {
+    background-color: #5a8ea1;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+button:hover {
+    background-color: #4c7d8f;
+}
+
+/* Dropdown für Lebensmittelsuche */
+#foodSuggestions {
+    max-height: 120px;
+    background-color: #333;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    padding: 0;
+    font-weight: 600;
+    top: 255px;
+}
+
+#foodSuggestions div {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+#foodSuggestions div:hover {
+    background-color: #444;
+}
+
+/* Liste der hinzugefügten Lebensmittel */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    width: 100%;
+}
+
+ul li {
+    background: #2a2a2a;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: 700;
+    flex-wrap: wrap;
+}
+
+/* Boxen für die Gesamtwerte */
+#totalKEBox, #totalWeightBox {
+    text-align: center;
+    background-color: transparent;
+    color: #82c8e5;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: 900;
+    margin-top: 30px;
+}
+
+/* Zusatztext für Portionsgröße */
+#portionLabel {
+    text-align: center;
+    font-size: 18px;
+    color: #ADD8E6;
+    margin-top: 5px;
+    display: none;
+    font-weight: 900;
+}
+
+/* Neues Lebensmittel Abschnitt */
+#newFoodSection {
+    display: none;
+    width: 100%;
+    margin-top: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+/* Stil der Löschtaste */
+.delete-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 10px;
+}
+
+.delete-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.delete-icon {
+    fill: #ffffff;
+    width: 10px;
+    height: 10px;
+    transition: transform 0.3s ease;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Symbol zum Ein- und Ausklappen des neuen Lebensmittel-Abschnitts */
+#toggleNewFoodSection {
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 36px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#toggleNewFoodSection:hover {
+    transform: scale(1.2);
+}
